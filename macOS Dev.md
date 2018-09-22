@@ -93,3 +93,50 @@ creating Model
 
 The AppDelegate is not intended to control a user interface or to coordinate an app’s model and view layers.
 
+
+## Controls
+
+**Taligent** was created by IBM and Apple to develop a set of tools and libraries like Cocoa.
+
+**RGBWell**  
+![](https://ws2.sinaimg.cn/large/006tNbRwgy1fvi9qzm1soj30ww0mg3yt.jpg)
+
+
+*Visible At Launch*  取消
+
+The property must be an optional because it is not initialized until `applicationDidFinishLaunching(_:)` is called.
+
+关联 `MainWindowController` 和 MainWindowController.xib   
+```swift
+    override var windowNibName: NSNib.Name? {
+        return "MainWindowController"
+    }
+```
+
+File's Owner is a placeholder that stands in for the object that will load the NIB file at runtime.
+
+
+![](https://ws3.sinaimg.cn/large/006tNbRwgy1fvi8bs3de1j30vi0l877s.jpg)
+
+- Controls
+
+`NSSlider`, `NSColorWell`
+
+![](https://ws4.sinaimg.cn/large/006tNbRwgy1fvi8es2i9ej30w40won0h.jpg)
+
+
+`NSCell`
+
+
+*continuous*
+
+
+
+- NSColorWell and NSColor
+
+
+- Using the Documentation
+
+There are over 300 classes in Cocoa and related frameworks, and every one is documented in Apple’s API reference.
+
+
