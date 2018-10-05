@@ -40,6 +40,9 @@ NSCollectionView
 Collection View Item
 
 
+
+
+
 # Cocoa Programming for OS X: The Big Nerd Ranch Guide
 
 
@@ -98,7 +101,7 @@ The AppDelegate is not intended to control a user interface or to coordinate an 
 
 **Taligent** was created by IBM and Apple to develop a set of tools and libraries like Cocoa.
 
-**RGBWell**  
+Project: **RGBWell**  
 ![](https://ws2.sinaimg.cn/large/006tNbRwgy1fvi9qzm1soj30ww0mg3yt.jpg)
 
 
@@ -139,4 +142,8 @@ File's Owner is a placeholder that stands in for the object that will load the N
 
 There are over 300 classes in Cocoa and related frameworks, and every one is documented in Apple’s API reference.
 
+
+
+
+Project: **BusyApp**
 
