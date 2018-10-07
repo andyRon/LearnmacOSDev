@@ -147,3 +147,59 @@ There are over 300 classes in Cocoa and related frameworks, and every one is doc
 
 Project: **BusyApp**
 
+## Delegation
+
+**SpeakLine**
+
+### 创建**SpeakLine**
+
+- 不是Storyboard创建项目
+- Delete the window
+- Create the window controller class with a XIB file
+
+![](https://upload-images.jianshu.io/upload_images/1678135-616bfacdac03fc40.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- 关联XIB文件
+
+```
+override var windowNibName: NSNib.Name? {
+        return "MainWindowController"
+    }
+```
+
+- 在`AppDelegate.swift`中初始化`MainWindowController`
+
+```
+    var mainWindowController: MainWindowController?
+
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        // Insert code here to initialize your application
+        
+        let mainWindowController = MainWindowController()
+        mainWindowController.showWindow(self)
+        self.mainWindowController = mainWindowController
+    }
+```
+
+Single-Window Application 
+Initializes a mina window controller
+
+- 把上面的代码段保存成一个 *code snippet*， 方便以后调用。  
+选中代码块，右击选中**Create Code Snippet**，然后命名。  
+
+![](https://upload-images.jianshu.io/upload_images/1678135-2228926d9ff8ef50.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+### 创建UI
+
+
+### Synthesizing Speech 合成声音
+
+`NSSpeechSynthesizer`
+
+
+### 更新按钮的状态
+
+
+### 通过代理模式检测 音频是否读完
+
+
