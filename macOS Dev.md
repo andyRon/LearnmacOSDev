@@ -97,7 +97,7 @@ creating Model
 The AppDelegate is not intended to control a user interface or to coordinate an app’s model and view layers.
 
 
-## Controls
+## 5 Controls
 
 **Taligent** was created by IBM and Apple to develop a set of tools and libraries like Cocoa.
 
@@ -147,7 +147,9 @@ There are over 300 classes in Cocoa and related frameworks, and every one is doc
 
 Project: **BusyApp**
 
-## Delegation
+
+
+## 6 Delegation
 
 **SpeakLine**
 
@@ -202,4 +204,40 @@ Initializes a mina window controller
 
 ### 通过代理模式检测 音频是否读完
 
+
+### Cocoa 中使用代理的类
+```swift
+NSAlert			NSMatrix			NSTabView
+NSAnimation		NSMenu				NSTableView
+NSApplication	NSPathControl		NSText
+NSBrowser		NSRuleEditor		NSTextField
+NSDatePicker	NSSavePanel			NSTextStorage
+NSDrawer		NSSound				NSTextView
+NSFontManager	NSSpeechRecognizer	NSTokenField
+NSImage			NSSpeechSynthesizer	NSToolbar
+NSLayoutManager	NSSplitView			NSWindow
+```
+
+### NSApplication 和  
+
+
+
+### The main event loop
+
+When a Cocoa application is launched, the `NSApplication` starts and maintains an event loop on the main thread. The main event loop’s job is to wait around for an event to happen, like a key being pressed or a mouse being clicked.
+
+
+??挑战有疑问
+
+## 7 Table Views
+
+
+### about Table Views
+
+*delegate*   the user interacts with a table view
+
+*data source*   a table view knows how to display data
+
+
+The data source waits on the table view to ask for data
 
