@@ -13,8 +13,11 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var textField: NSTextField!
     @IBOutlet weak var stopButton: NSButton!
     @IBOutlet weak var speakButton: NSButton!
+    @IBOutlet weak var tableView: NSTableView!
     
     let speechSynth = NSSpeechSynthesizer()
+    
+    let voices = NSSpeechSynthesizer.availableVoices
     
     var isStarted = false {
         didSet {
@@ -53,9 +56,29 @@ class MainWindowController: NSWindowController {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-        updateButtons()
         
+        updateButtons()
         speechSynth.delegate = self
+        
+//        print(voices)
+        // 打印的系统音效的名称
+        for voice in voices {
+            print(voiceNameForIdentifier(identifier: voice.rawValue)!)
+        }
+        
+        let defaultVoice = NSSpeechSynthesizer.defaultVoice
+        
+    }
+    
+    func voiceNameForIdentifier(identifier: String) -> String? {
+//        if let attributes = NSSpeechSynthesizer.attributes(forVoice: NSSpeechSynthesizer.VoiceName(rawValue: identifier)) {
+//            return attributes[NSSpeechSynthesizer.VoiceName] as? String
+//        } else {
+//            return nil
+//        }
+        let attributes = NSSpeechSynthesizer.attributes(forVoice: NSSpeechSynthesizer.VoiceName(rawValue: identifier))
+        
+        return attributes[NSSpeechSynthesizer.VoiceAttributeKey.name] as? String
     }
     
 }
@@ -74,5 +97,31 @@ extension MainWindowController: NSWindowDelegate {
     // 正在读是不能关闭窗口。
     func windowShouldClose(_ sender: NSWindow) -> Bool {
         return !isStarted
+    }
+}
+
+extension MainWindowController: NSTableViewDataSource {
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return voices.count
+    }
+    
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        let voice = voices[row]
+        let voiceName = voiceNameForIdentifier(identifier: voice.rawValue)
+        return voiceName
+    }
+}
+
+extension MainWindowController: NSTableViewDelegate {
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let row = tableView.selectedRow
+        
+        if row == -1 {
+            speechSynth.setVoice(nil)
+            return
+        }
+        let voice = voices[row]
+        speechSynth.setVoice(voice)
     }
 }

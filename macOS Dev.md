@@ -241,3 +241,54 @@ When a Cocoa application is launched, the `NSApplication` starts and maintains a
 
 The data source waits on the table view to ask for data
 
+
+### Getting Voice Data
+
+打印`NSSpeechSynthesizer.availableVoices`，可得到可用声音数据
+
+```
+[__C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.Alex), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.alice), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.alva), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.amelie), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.anna), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.carmit), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.damayanti), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.daniel), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.diego), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.ellen), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.fiona), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.Fred), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.ioana), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.joana), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.jorge), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.juan), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.kanya), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.karen), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.kyoko), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.laura), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.lekha), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.luca), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.luciana), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.maged), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.mariska), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.mei-jia), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.melina), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.milena), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.moira), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.monica), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.nora), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.paulina), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.samantha), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.sara), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.satu), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.sin-ji), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.tessa), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.thomas), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.ting-ting.premium), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.veena), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.Victoria), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.xander), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.yelda), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.yuna), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.yuri), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.zosia), __C.NSSpeechSynthesizerVoiceName(_rawValue: com.apple.speech.synthesis.voice.zuzana)]
+```
+
+`NSSpeechSynthesizer.VoiceAttributeKey`  macOS 系统中的声音资源位置在 `/System/Library/Speech/Voices`
+
+
+### Adding a Table View
+
+
+![Table View中包括若干对象](https://ws3.sinaimg.cn/large/006tNbRwgy1fwwvzwvcxvj30ex09q74r.jpg)
+
+Table View中包括若干对象
+
+**Bordered Scroll View** 是 `NSScrollView` 的实例。
+
+a clip view, two scrollers, and a table header view。**Clip View**是`NSClipView`的实例，其中包含一个`NSTableView`的实例；`NSScroller`； `NSTableViewHeaderView`; `NSTableColumn`
+
+删除默认的两个**Table Column**中的一个，并修改另一个名字为**Voices**。此时虽然已经是一列了，但头部显示的还是原来的两列，此时只有重新调整一下**Scroll View**的大小，就会好了，这只是一个显示问题
+
+
+#### 让window不能调整大小
+
+
+### Tables, Cells, and Views
+
+In a **cell-based table**, a cell is always an instance of `NSCell` or one of its subclasses.
+
+In a **view-based table**, a table cell is an instance of `NSView` or one of its subclasses – most commonly `NSTableCellView`.
+
+![](https://ws3.sinaimg.cn/large/006tNbRwgy1fwwx5y25gfj30fn0a8dgi.jpg)
+
+#### NSTableViewDataSource 
+
+#### Binding the text field to the table cell view
+
+![](https://ws2.sinaimg.cn/large/006tNbRwgy1fwwxkv9ulmj31kw0xutav.jpg)
+
+
+#### NSTableViewDelegate
+
+
+p295 “Pre-selecting the default voice”
+
+
+
