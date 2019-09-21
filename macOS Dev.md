@@ -61,10 +61,14 @@ This book will focus on the Cocoa frameworks and especially Foundation and AppKi
 
 ## 1 Let's Get Started
 
-Project: **RandomPassword**  
+项目名称: **RandomPassword**  
 
 
-NSWindow, NSView, NSButton, and NSTextField
+知识点：`NSWindow`, `NSView`, `NSButton`, `NSTextField`
+
+![](https://tva1.sinaimg.cn/large/006y8mN6ly1g770ch3qbnj30g006ota8.jpg)
+
+
 
 The model layer is an abstraction of the real-world problem that the application is built to solve. 
 
@@ -93,8 +97,11 @@ In the Controls section, uncheck the box labeled Resize.  窗口不能随意调�
 
 creating Model
 
-
 The AppDelegate is not intended to control a user interface or to coordinate an app’s model and view layers.
+
+
+
+
 
 
 ## 5 Controls
@@ -116,7 +123,7 @@ The property must be an optional because it is not initialized until `applicatio
     }
 ```
 
-File's Owner is a placeholder that stands in for the object that will load the NIB file at runtime.
+File's Owner是一个占位符，代表将在运行时加载nib文件的对象。
 
 
 ![](https://ws3.sinaimg.cn/large/006tNbRwgy1fvi8bs3de1j30vi0l877s.jpg)
@@ -231,6 +238,7 @@ When a Cocoa application is launched, the `NSApplication` starts and maintains a
 
 ## 7 Table Views
 
+完成可以选择speech的声音
 
 ### about Table Views
 
@@ -266,8 +274,11 @@ a clip view, two scrollers, and a table header view。**Clip View**是`NSClipVie
 
 删除默认的两个**Table Column**中的一个，并修改另一个名字为**Voices**。此时虽然已经是一列了，但头部显示的还是原来的两列，此时只有重新调整一下**Scroll View**的大小，就会好了，这只是一个显示问题
 
-
 #### 让window不能调整大小
+
+Controls > Resize
+
+
 
 
 ### Tables, Cells, and Views
@@ -284,11 +295,13 @@ In a **view-based table**, a table cell is an instance of `NSView` or one of its
 
 ![](https://ws2.sinaimg.cn/large/006tNbRwgy1fwwxkv9ulmj31kw0xutav.jpg)
 
+请注意，**Model Key Path**是objectvalue。这是指表单元格视图的objectValue属性。您刚刚将文本字段的值绑定到表单元格视图的objectvalue。有了这个绑定，每当表单元格视图的objectValue发生更改时，文本字段都将使用相同的数据进行更新。
+
+
 
 #### NSTableViewDelegate
 
 
-p295 “Pre-selecting the default voice”
 
-
+## 8 KVC, KVO, and Bindings
 

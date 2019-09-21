@@ -10,76 +10,84 @@ import Cocoa
 
 class MainWindowController: NSWindowController {
 
-    @IBOutlet weak var textField: NSTextField!
-    @IBOutlet weak var stopButton: NSButton!
-    @IBOutlet weak var speakButton: NSButton!
-    @IBOutlet weak var tableView: NSTableView!
-    
-    let speechSynth = NSSpeechSynthesizer()
-    
-    let voices = NSSpeechSynthesizer.availableVoices
-    
-    var isStarted = false {
-        didSet {
-            updateButtons()
-        }
-    }
-    
-    override var windowNibName: NSNib.Name? {
-        return "MainWindowController"
-    }
-    
-    @IBAction func stopIt(_ sender: NSButton) {
-        speechSynth.stopSpeaking()
-//        isStarted = false
-    }
-    
-    @IBAction func speakIt(_ sender: NSButton) {
-        let string = textField.stringValue
-        if string.isEmpty {
-            print("string from \(string) is empty")
-        } else {
-            speechSynth.startSpeaking(string)
-            isStarted = true
-        }
-    }
-    
-    func updateButtons() {
-        if isStarted {
-            speakButton.isEnabled = false
-            stopButton.isEnabled = true
-        } else {
-            speakButton.isEnabled = true
-            stopButton.isEnabled = false
-        }
-    }
-    
-    override func windowDidLoad() {
-        super.windowDidLoad()
-        
+  @IBOutlet weak var textField: NSTextField!
+  @IBOutlet weak var stopButton: NSButton!
+  @IBOutlet weak var speakButton: NSButton!
+  @IBOutlet weak var tableView: NSTableView!
+  
+  let speechSynth = NSSpeechSynthesizer()
+  
+  let voices = NSSpeechSynthesizer.availableVoices
+  
+  var isStarted = false {
+    didSet {
         updateButtons()
-        speechSynth.delegate = self
-        
-//        print(voices)
-        // 打印的系统音效的名称
-        for voice in voices {
-            print(voiceNameForIdentifier(identifier: voice.rawValue)!)
-        }
-        
-        let defaultVoice = NSSpeechSynthesizer.defaultVoice
-        
     }
-    
-    func voiceNameForIdentifier(identifier: String) -> String? {
+  }
+  
+  override var windowNibName: NSNib.Name? {
+    return "MainWindowController"
+  }
+  
+  @IBAction func stopIt(_ sender: NSButton) {
+    speechSynth.stopSpeaking()
+//        isStarted = false
+  }
+  
+  @IBAction func speakIt(_ sender: NSButton) {
+    let string = textField.stringValue
+    if string.isEmpty {
+      print("string from \(string) is empty")
+    } else {
+      speechSynth.startSpeaking(string)
+      isStarted = true
+    }
+  }
+  
+  func updateButtons() {
+      if isStarted {
+          speakButton.isEnabled = false
+          stopButton.isEnabled = true
+      } else {
+          speakButton.isEnabled = true
+          stopButton.isEnabled = false
+      }
+  }
+  
+  override func windowDidLoad() {
+    super.windowDidLoad()
+  
+    updateButtons()
+    speechSynth.delegate = self
+  
+    // 打印的系统音效的名称
+    for voice in voices {
+      print(voiceNameForIdentifier(identifier: voice.rawValue)!)
+    }
+  
+    let defaultVoice = NSSpeechSynthesizer.defaultVoice
+    if let defaultRow = find(voices, defaultVoice) {
+      let indices = NSIndexSet(index: defaultRow)
+      tableView.selectRowIndexes(indices as IndexSet, byExtendingSelection: false)
+      tableView.scrollRowToVisible(defaultRow)
+    }
+  }
+  
+  func find(_ arr: [NSSpeechSynthesizer.VoiceName], _ el: NSSpeechSynthesizer.VoiceName) -> Int? {
+    return arr.index(of: el)
+  }
+  
+  
+  func voiceNameForIdentifier(identifier: String) -> String? {
 //        if let attributes = NSSpeechSynthesizer.attributes(forVoice: NSSpeechSynthesizer.VoiceName(rawValue: identifier)) {
 //            return attributes[NSSpeechSynthesizer.VoiceName] as? String
 //        } else {
 //            return nil
 //        }
-        let attributes = NSSpeechSynthesizer.attributes(forVoice: NSSpeechSynthesizer.VoiceName(rawValue: identifier))
-        
-        return attributes[NSSpeechSynthesizer.VoiceAttributeKey.name] as? String
-    }
+      let attributes = NSSpeechSynthesizer.attributes(forVoice: NSSpeechSynthesizer.VoiceName(rawValue: identifier))
+    
+      return attributes[NSSpeechSynthesizer.VoiceAttributeKey.name] as? String
+  }
     
 }
 
